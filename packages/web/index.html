@@ -14,56 +14,9 @@
   </body>
   <script>
     
-
-var hasLoggedOnce = false;
-    // Some browsers (at least Firefox) don't report line and column numbers
-    // when event is handled through window.addEventListener('error', fn). That's why
-    // a more reliable approach is to set an event listener via direct assignment.
-    console.log(window, 'hi')
-    // window.onerror = function (reason) {
-    //     const { eventOrMessage, url, lineNumber, colNumber, error } = reason
-    //     console.log('on error!!')
-    //     if (hasLoggedOnce || !eventOrMessage) {
-    //         // It does not make sense to report an error if:
-    //         // 1. another one has already been reported -- the page has an invalid state and may produce way too many errors.
-    //         // 2. the provided information does not make sense (!eventOrMessage -- the browser didn't supply information for some reason.)
-    //         return;
-    //     }
-    //     hasLoggedOnce = true;
-    //     if (typeof eventOrMessage !== 'string') {
-    //         error = eventOrMessage.error;
-    //         url = eventOrMessage.filename || eventOrMessage.fileName;
-    //         lineNumber = eventOrMessage.lineno || eventOrMessage.lineNumber;
-    //         colNumber = eventOrMessage.colno || eventOrMessage.columnNumber;
-    //         eventOrMessage = eventOrMessage.message || eventOrMessage.name || error.message || error.name;
-    //     }
-    //     if (error && error.stack) {
-    //         eventOrMessage = [eventOrMessage, '; Stack: ', error.stack, '.'].join('');
-    //     }
-    //     var jsFile = (/[^/]+\.js/i.exec(url || '') || [])[0] || 'inlineScriptOrDynamicEvalCode',
-    //         stack = [eventOrMessage, ' Occurred in ', jsFile, ':', lineNumber || '?', ':', colNumber || '?'].join('');
-
-    //     // shortening the message a bit so that it is more likely to fit into browser's URL length limit (which is 2,083 in some browsers)
-    //     stack = stack.replace(/https?\:\/\/[^/]+/gi, '');
-    //     // calling the server-side handler which should probably register the error in a database or a log file
-    //     new Image().src = 'http://localhost:6767/?stack=' + encodeURIComponent(stack);
-
-    //     console.log('http://localhost:6767/?stack=' + encodeURIComponent(stack))
-        
-    //     // window.DEBUG_ENVIRONMENT a configurable property that may be set to true somewhere else for debugging and testing purposes.
-    //     if (window.DEBUG_ENVIRONMENT) {
-    //         alert('Client-side script failed: ' + stack);
-    //     }
-    // }
-    // function reportError(error) {
-      
-    // }
-
-
     var hasLoggedOnce = false;
 
     function handleError(e) {
-      console.log('wut')
       var message = e.message;
       var col = e.colno;
       var line = e.lineno;
@@ -71,9 +24,6 @@ var hasLoggedOnce = false;
       var filename = e.filename;
 
       if (hasLoggedOnce || !message) {
-        // It does not make sense to report an error if:
-        // 1. another one has already been reported -- the page has an invalid state and may produce way too many errors.
-        // 2. the provided information does not make sense (!eventOrMessage -- the browser didn't supply information for some reason.)
         return;
       }
 
@@ -94,7 +44,6 @@ var hasLoggedOnce = false;
 
       // shortening the message a bit so that it is more likely to fit into browser's URL length limit (which is 2,083 in some browsers)
       stack = stack.replace(/https?\:\/\/[^/]+/gi, '');
-      console.log('http://127.0.0.1:7676/?stack=' + encodeURIComponent(stack))
 
       // calling the server-side handler which should probably register the error in a database or a log file
       new Image().src = 'http://127.0.0.1:7676/?stack=' + encodeURIComponent(stack);
@@ -102,7 +51,6 @@ var hasLoggedOnce = false;
     }
 
     function handleException(e) {
-      console.log('wut')
       var message = e.reason.message;
       var error = e.reason;
 
@@ -114,7 +62,6 @@ var hasLoggedOnce = false;
 
       // shortening the message a bit so that it is more likely to fit into browser's URL length limit (which is 2,083 in some browsers)
       stack = stack.replace(/https?\:\/\/[^/]+/gi, '');
-      console.log('http://127.0.0.1:7676/?stack=' + encodeURIComponent(stack))
 
       // calling the server-side handler which should probably register the error in a database or a log file
       new Image().src = 'http://127.0.0.1:7676/?stack=' + encodeURIComponent(stack);
