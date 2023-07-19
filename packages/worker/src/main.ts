@@ -33,7 +33,6 @@ async function handleRequest(event: FetchEvent) {
     const secrets = new SecretStore('secrets');
     const slackWebhook = await secrets.get('SLACK_WEBHOOK');
 
-    // TODO env vars
     await fetch(slackWebhook.plaintext(), {
       method: 'POST',
       body: JSON.stringify({
