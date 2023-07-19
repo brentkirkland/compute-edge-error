@@ -1,0 +1,18 @@
+# This file describes a Fastly Compute@Edge package. To learn more visit:
+# https://developer.fastly.com/reference/fastly-toml/
+
+authors = ["<bkirkland@fastly.com>"]
+description = "A basic example of how to write an error catcher for undhandled UI errors"
+language = "javascript"
+manifest_version = 3
+name = "Edge Error"
+
+[scripts]
+build = "npx nx build worker && npx nx build web"
+
+[local_server]
+    [local_server.backends]
+        [local_server.backends.backend_a]
+          url = "https://hooks.slack.com"
+    secret_stores.secrets = [{key = "SLACK_WEBHOOK", data = "hook url here"}]
+
