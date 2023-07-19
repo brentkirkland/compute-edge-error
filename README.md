@@ -1,6 +1,8 @@
 # EdgeError
 
-The following is an example how you would to use Fastly's Compute@Edge to report errors to your slack.
+The following is an example how you would to use Fastly's Compute@Edge to report errors generated from your UI to your slack.
+
+Frontend is a vite app found under `packages/web`. Compute@Edge service is a typescript app found under `packages/worker`.
 
 ## Requirements
 
