@@ -11,8 +11,8 @@ name = "Edge Error"
 build = "npx nx build worker && npx nx build web"
 
 [local_server]
+    secret_stores.secrets = [{key = "SLACK_WEBHOOK", data = "hook url here"}]
     [local_server.backends]
         [local_server.backends.backend_a]
-          url = "https://hooks.slack.com"
-    secret_stores.secrets = [{key = "SLACK_WEBHOOK", data = "hook url here"}]
+            url = "https://hooks.slack.com"
 
